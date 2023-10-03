@@ -1,4 +1,3 @@
-using Coimbra.Services;
 using Source;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,21 +5,36 @@ using USE.ScreenService;
 
 namespace Developers
 {
-    public class BaseTest : MonoBehaviour
+    public class BaseTest : BaseScreen
     {
         [SerializeField] private Button _nextScene;
-        [SerializeField] private ScreenReference _sceneScreenReference;
-
-        private IScreenService _screenService;
+        [Header("Screen Reference")]
+        [SerializeField] private ScreenReference _sceneScreenRef;
 
         private void Awake()
         {
-            ServiceLocator.TryGet(out _screenService);
+            Initialize();
+        }
+
+        private void OnDisable()
+        {
+            Dispose();
+        }
+
+        private new void Initialize()
+        {
+            base.Initialize();
+
             _nextScene.onClick.AddListener(() =>
             {
-                AsyncOperation x = _screenService.LoadSingleSceneAsync(_sceneScreenReference);
-                x.completed += operation => Debug.Log($"Cena {_sceneScreenReference.SceneName} Carregada.");
+                AsyncOperation x = ScreenService.LoadSingleSceneAsync(_sceneScreenRef);
+                x.completed += operation => Debug.Log($"Cena <color=yellow>{_thisScreenRef.SceneName}</color>, carregou a cena <color=blue>{_sceneScreenRef.SceneName}</color>.");
             });
+        }
+
+        private new void Dispose()
+        {
+            base.Dispose();
         }
     }
 }

@@ -259,6 +259,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb386bc9d2425243a60abe915377f8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _assertAwake: 0
+  _activateOnSpawn: 0
+  _deactivateOnDispose: 0
+  _thisScreenRef: {fileID: 11400000, guid: c7469e28c3296be4983103c4dc27e39d, type: 2}
   _nextScene: {fileID: 533442919}
   _sceneScreenReference: {fileID: 11400000, guid: de9abe4f9e39854499ef53cc658dc850, type: 2}
 --- !u!1 &705507993
