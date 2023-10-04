@@ -1,4 +1,5 @@
 using Coimbra.Services;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Audio;
 using USE.ScreenService;
@@ -10,11 +11,15 @@ namespace Source
     {
         [Header("Menu screen")]
         [SerializeField] private ScreenReference _firstScreenRef;
-        [Header("Sound config")]
+        [FoldoutGroup("Sound config")]
         [SerializeField] private SoundLibrary _library;
+        [FoldoutGroup("Sound config")]
         [SerializeField] private AudioMixer _audioMixer;
+        [FoldoutGroup("Sound config")]
         [SerializeField] private AudioMixerGroup _musicMixerGroup;
+        [FoldoutGroup("Sound config")]
         [SerializeField] private AudioMixerGroup _sfxMixerGroup;
+        [FoldoutGroup("Sound config")]
         [SerializeField] private AudioMixerGroup _uiSfxMixerGroup;
 
         private IScreenService _screenService;
