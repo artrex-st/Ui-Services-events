@@ -7,7 +7,7 @@ using USE.SoundService;
 
 namespace Source
 {
-    public class Initialize : MonoBehaviour
+    public sealed class Initialize : MonoBehaviour
     {
         [Header("Menu screen")]
         [SerializeField] private ScreenReference _firstScreenRef;

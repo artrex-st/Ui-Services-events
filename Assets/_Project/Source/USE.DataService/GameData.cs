@@ -1,18 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class GameData : MonoBehaviour
+namespace USE.DataService
 {
-    // Start is called before the first frame update
-    void Start()
+    [System.Serializable]
+    public class GameData
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        //TODO: add settings proprieties
         
     }
 }

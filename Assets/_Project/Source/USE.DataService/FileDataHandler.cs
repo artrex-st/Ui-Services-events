@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace USE.DataService
 {
-    public class FileDataHandler
+    public sealed class FileDataHandler
     {
         private string _dataDirPath = "";
         private string _dataFileName = "";
