@@ -1,8 +1,8 @@
-using UnityEngine;
+using Coimbra.Services;
 
 namespace USE.DataService
 {
-    public interface ISaveDataService
+    public interface ISaveDataService: IService
     {
         public GameData GameData { get; }
         public void Initialize(string fileName, bool useEncryption);

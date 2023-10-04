@@ -1,6 +1,10 @@
 using Coimbra;
+using Coimbra.Services;
+using Cysharp.Threading.Tasks;
+using System;
 using UnityEngine;
 using UnityEngine.Audio;
+using USE.DataService;
 
 namespace USE.SoundService
 {
@@ -22,9 +26,12 @@ namespace USE.SoundService
         private AudioSource _musicOutput;
         private AudioSource _sfxOutput;
         private AudioSource _uiSfxOutput;
+        private ISaveDataService _saveDataService;
 
         public void Initialize(SoundLibrary library, AudioMixer mixerAudio, AudioMixerGroup musicGroup, AudioMixerGroup sfxGroup, AudioMixerGroup uiSfxGroup)
         {
+            ServiceLocator.TryGet(out _saveDataService);
+
             SoundLibrary = library;
             _mixerAudio = mixerAudio;
             _musicOutput = gameObject.AddComponent<AudioSource>();
@@ -33,7 +40,6 @@ namespace USE.SoundService
             _musicOutput.outputAudioMixerGroup = musicGroup;
             _sfxOutput.outputAudioMixerGroup = sfxGroup;
             _uiSfxOutput.outputAudioMixerGroup = uiSfxGroup;
-            PlayMusic(SoundLibrary.MainMenuMusic);
         }
 
         public float MasterVolume
@@ -77,6 +83,12 @@ namespace USE.SoundService
             _uiSfxOutput.PlayOneShot(clip);
         }
 
+        private new void Start()
+        {
+            base.Start();
+            LoadSoundVolume();
+        }
+
         private void SetMixerVolumeParameter(string key, float volumePercent)
         {
             float volume = Mathf.Lerp(_minimumVolumeDb, _maximumVolumeDb, volumePercent);
@@ -92,6 +104,14 @@ namespace USE.SoundService
             }
 
             return _defaultSliderDbValue;
+        }
+
+        private void LoadSoundVolume()
+        {
+            MasterVolume = _saveDataService.GameData.MasterVolume;
+            MusicVolume = _saveDataService.GameData.MusicVolume;
+            SfxVolume = _saveDataService.GameData.SfxVolume;
+            UiSfxVolume = _saveDataService.GameData.UiSfxVolume;
         }
     }
 }

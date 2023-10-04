@@ -27,6 +27,8 @@ namespace Source
             base.Initialize();
             _PlayButton.onClick.AddListener(PlayButtonClickHandler);
             _settingsButton.onClick.AddListener(SettingsButtonClickHandler);
+
+            SoundService.PlayMusic(SoundService.SoundLibrary.MainMenuMusic);
         }
 
         private void PlayButtonClickHandler()

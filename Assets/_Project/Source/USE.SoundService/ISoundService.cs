@@ -1,5 +1,6 @@
 using Coimbra.Services;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace USE.SoundService
 {
@@ -11,7 +12,9 @@ namespace USE.SoundService
         public float SfxVolume { get; set; }
         public float UiSfxVolume { get; set; }
 
-        public void Initialize(SoundLibrary library) { }
+        public void Initialize(SoundLibrary library, AudioMixer mixerAudio, AudioMixerGroup musicGroup, AudioMixerGroup sfxGroup, AudioMixerGroup uiSfxGroup);
+        public void PlayMusic(AudioClip clip);
         public void PlayUiSfx(AudioClip clip);
+
     }
 }

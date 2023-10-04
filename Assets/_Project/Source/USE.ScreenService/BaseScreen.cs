@@ -3,6 +3,7 @@ using Coimbra.Services.Events;
 using Source;
 using System.Collections.Generic;
 using UnityEngine;
+using USE.DataService;
 using USE.SoundService;
 
 namespace USE.ScreenService
@@ -11,12 +12,14 @@ namespace USE.ScreenService
     {
         [Header("Config")]
         [SerializeField] protected ScreenReference _thisScreenRef;
+        protected ISaveDataService SaveDataService;
         protected IScreenService ScreenService;
         protected ISoundService SoundService;
         protected readonly List<EventHandle> EventHandles = new();
 
         protected void Initialize()
         {
+            ServiceLocator.TryGet(out SaveDataService);
             ServiceLocator.TryGet(out ScreenService);
             ServiceLocator.TryGet(out SoundService);
 #if UNITY_EDITOR

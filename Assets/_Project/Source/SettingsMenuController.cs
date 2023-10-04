@@ -38,6 +38,8 @@ namespace Source
             _sliderMusic.onValueChanged.AddListener(OnMusicVolumeChangeHandler);
             _sliderSfx.onValueChanged.AddListener(OnSfxVolumeChangeHandler);
             _sliderUiSfx.onValueChanged.AddListener(OnUiSfxVolumeChangeHandler);
+
+            SyncSlidersFromMixers();
         }
 
         private void OnMasterVolumeChangeHandler(float value)
@@ -62,7 +64,25 @@ namespace Source
 
         private void CloseButtonClickHandler()
         {
+            SaveSoundVolume();
             AsyncOperation openSceneOperationAsync = ScreenService.UnLoadSceneAsync(_thisScreenRef);
+        }
+
+        private void SyncSlidersFromMixers()
+        {
+            _sliderMaster.value = SaveDataService.GameData.MasterVolume;
+            _sliderMusic.value = SaveDataService.GameData.MusicVolume;
+            _sliderSfx.value = SaveDataService.GameData.SfxVolume;
+            _sliderUiSfx.value = SaveDataService.GameData.UiSfxVolume;
+        }
+
+        private void SaveSoundVolume()
+        {
+            SaveDataService.GameData.MasterVolume = SoundService.MasterVolume;
+            SaveDataService.GameData.MusicVolume = SoundService.MusicVolume;
+            SaveDataService.GameData.SfxVolume = SoundService.SfxVolume;
+            SaveDataService.GameData.UiSfxVolume = SoundService.UiSfxVolume;
+            SaveDataService.SaveGame();
         }
     }
 }
