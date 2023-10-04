@@ -6,8 +6,8 @@ namespace USE.SoundService
 {
     public class SoundService : Actor, ISoundService
     {
+        public SoundLibrary SoundLibrary { get; private set; }
 
-        public SoundLibrary Library { get; private set; }
         private const string _masterVolume = "Master";
         private const string _musicVolume = "Music";
         private const string _sfxVolume = "Sfx";
@@ -25,7 +25,7 @@ namespace USE.SoundService
 
         public void Initialize(SoundLibrary library, AudioMixer mixerAudio, AudioMixerGroup musicGroup, AudioMixerGroup sfxGroup, AudioMixerGroup uiSfxGroup)
         {
-            Library = library;
+            SoundLibrary = library;
             _mixerAudio = mixerAudio;
             _musicOutput = gameObject.AddComponent<AudioSource>();
             _sfxOutput = gameObject.AddComponent<AudioSource>();
@@ -33,7 +33,7 @@ namespace USE.SoundService
             _musicOutput.outputAudioMixerGroup = musicGroup;
             _sfxOutput.outputAudioMixerGroup = sfxGroup;
             _uiSfxOutput.outputAudioMixerGroup = uiSfxGroup;
-            PlayMusic(Library.MainMenuMusic);
+            PlayMusic(SoundLibrary.MainMenuMusic);
         }
 
         public float MasterVolume
@@ -70,6 +70,11 @@ namespace USE.SoundService
             _musicOutput.loop = true;
             _musicOutput.clip = clip;
             _musicOutput.Play();
+        }
+
+        public void PlayUiSfx(AudioClip clip)
+        {
+            _uiSfxOutput.PlayOneShot(clip);
         }
 
         private void SetMixerVolumeParameter(string key, float volumePercent)

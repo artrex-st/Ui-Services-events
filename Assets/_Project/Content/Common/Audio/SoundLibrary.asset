@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: SoundLibrary
   m_EditorClassIdentifier: 
   MainMenuMusic: {fileID: 8300000, guid: d8ab3f838e7445a40931b18ca3fb6716, type: 3}
+  UiClick: {fileID: 8300000, guid: ea4a86981c2a0614d9d4ac7c6d109ea9, type: 3}
