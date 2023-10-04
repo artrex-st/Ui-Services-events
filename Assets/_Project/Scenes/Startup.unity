@@ -168,6 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firstScreenRef: {fileID: 11400000, guid: de9abe4f9e39854499ef53cc658dc850, type: 2}
+  _fileName: USEData.json
+  _useEncryption: 0
   _library: {fileID: 11400000, guid: cb33d3c229449b04cb2444f8ba1da8b5, type: 2}
   _audioMixer: {fileID: 24100000, guid: aac211bba32d9ef45a009644e12a96d1, type: 2}
   _musicMixerGroup: {fileID: -7629108672064147477, guid: aac211bba32d9ef45a009644e12a96d1, type: 2}
