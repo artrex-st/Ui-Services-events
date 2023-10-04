@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66dbff222bea404886e21afd226801e, type: 3}
   m_Name: SoundLibrary
   m_EditorClassIdentifier: 
-  MainMenuMusic: {fileID: 0}
-  GameplayMusic: {fileID: 0}
+  MainMenuMusic: {fileID: 8300000, guid: d8ab3f838e7445a40931b18ca3fb6716, type: 3}

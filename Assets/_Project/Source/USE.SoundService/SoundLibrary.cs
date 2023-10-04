@@ -7,7 +7,5 @@ namespace USE.SoundService
     {
         [Header("Musics")]
         public AudioClip MainMenuMusic;
-        public AudioClip GameplayMusic;
-
     }
 }

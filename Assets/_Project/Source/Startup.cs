@@ -12,8 +12,10 @@ namespace Source
         [SerializeField] private ScreenReference _firstScreenRef;
         [Header("Sound config")]
         [SerializeField] private SoundLibrary _library;
-        [SerializeField] private AudioMixerGroup _musicMixer;
-        [SerializeField] private AudioMixerGroup _sfxMixer;
+        [SerializeField] private AudioMixer _audioMixer;
+        [SerializeField] private AudioMixerGroup _musicMixerGroup;
+        [SerializeField] private AudioMixerGroup _sfxMixerGroup;
+        [SerializeField] private AudioMixerGroup _uiSfxMixerGroup;
 
         private IScreenService _screenService;
 
@@ -38,7 +40,7 @@ namespace Source
             GameObject soundServiceObject = new GameObject(nameof(SoundService));
             DontDestroyOnLoad(soundServiceObject);
             SoundService soundService = soundServiceObject.AddComponent<SoundService>();
-            soundService.Initialize(_library, _musicMixer, _sfxMixer);
+            soundService.Initialize(_library, _audioMixer, _musicMixerGroup, _sfxMixerGroup, _uiSfxMixerGroup);
         }
     }
 }
