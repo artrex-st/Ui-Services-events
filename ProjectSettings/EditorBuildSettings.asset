@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes/Startup.unity
     guid: 33cedb6c3b903d84cac63d36ea032da6
   - enabled: 1
+    path: Assets/_Project/Scenes/PopUps/LoadingPopUp.unity
+    guid: 1ab7511155a041047b3557a1c7b5bd5f
+  - enabled: 1
     path: Assets/_Project/Scenes/MainMenu.unity
     guid: 76629461d6b4a994e9b35ac1f4b02509
   - enabled: 1
