@@ -85,7 +85,6 @@ namespace USE.SoundService
 
         private new void Start()
         {
-            base.Start();
             LoadSoundVolume();
         }
 
