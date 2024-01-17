@@ -29,15 +29,11 @@ namespace Source
         [FoldoutGroup("Sound config")]
         [SerializeField] private AudioMixerGroup _uiSfxMixerGroup;
 
-        private IScreenService _screenService;
-
         private void Awake()
         {
             SpawnPersistingDataService();
-            SpawnScreenService();
             SpawnSoundService();
-            ServiceLocator.TryGet(out _screenService);
-            _screenService.LoadSingleSceneAsync(_firstScreenRef);
+            SpawnScreenService();
         }
 
         private void SpawnPersistingDataService()
@@ -57,6 +53,7 @@ namespace Source
             DontDestroyOnLoad(screenServiceObject);
             ScreenService screenService = screenServiceObject.AddComponent<ScreenService>();
             //screenService.Initialize();
+            screenService.LoadSingleSceneAsync(_firstScreenRef);
         }
 
         private void SpawnSoundService()

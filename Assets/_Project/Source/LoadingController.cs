@@ -2,17 +2,21 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 using USE.ScreenService;
 
 namespace Source
 {
     public class LoadingController : BaseScreen
     {
-        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        [SerializeField] private Button _cancelButton;
+        private CancellationTokenSource _cancellationTokenSource = new();
 
         private async void Start()
         {
-            CancellationToken cancellationToken = cancellationTokenSource.Token;
+            Initialize();
+            _cancelButton.onClick.AddListener(CancelLoadingOperationClickHandler);
+            CancellationToken cancellationToken = _cancellationTokenSource.Token;
 
             try
             {
@@ -24,6 +28,10 @@ namespace Source
             {
                 Debug.Log("Operação cancelada por exceção.");
             }
+            finally
+            {
+                ScreenService.UnLoadSceneAsync(_thisScreenRef);
+            }
         }
 
         private async UniTask<bool> SimulateAsyncOperationAsync(CancellationToken cancellationToken)
@@ -34,9 +42,9 @@ namespace Source
             return cancellationToken.IsCancellationRequested;
         }
 
-        public void CancelOperation()
+        private void CancelLoadingOperationClickHandler()
         {
-            cancellationTokenSource.Cancel();
+            _cancellationTokenSource.Cancel();
         }
     }
 }
